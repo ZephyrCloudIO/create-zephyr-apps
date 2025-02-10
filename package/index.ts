@@ -42,10 +42,6 @@ function runCmd(cmd: string, cwd: string): Promise<void> {
  * commit the changes, and then remove the local configuration.
  */
 async function initializeGit(projectPath: string): Promise<void> {
-  // Remove any existing .git directory to start fresh.
-  const gitPath = path.join(projectPath, '.git');
-  await fs.promises.rm(gitPath, { recursive: true, force: true });
-
   // Ask the user if they want to initialize a Git repository.
   const shouldInit = await confirm({
     message: 'Would you like to initialize a new Git repository?',
@@ -181,6 +177,12 @@ async function main() {
           );
 
           try {
+            // Remove .git folder from the cloned template
+            await fs.promises.rm(path.join(clonedPath, '.git'), {
+              recursive: true,
+              force: true,
+            });
+
             await fs.promises.cp(clonedPath, outputPath, {
               recursive: true,
               force: true,
@@ -212,6 +214,12 @@ async function main() {
           }
 
           try {
+            // Remove .git folder from the cloned template
+            await fs.promises.rm(path.join(temp_dir, '.git'), {
+              recursive: true,
+              force: true,
+            });
+
             await fs.promises.cp(temp_dir, outputPath, {
               recursive: true,
               force: true,
@@ -232,7 +240,7 @@ async function main() {
       });
     }
 
-    // Initialize Git, commit the changes, and then remove the temporary user configuration.
+    // Initialize Git only if user confirms
     await initializeGit(outputPath);
     note('Git repository and initial commit created successfully!');
   } catch (error) {
