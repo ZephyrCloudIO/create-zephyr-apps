@@ -1,7 +1,7 @@
-import { CLIOptions } from './types';
-import c from 'chalk';
-import { exec } from 'child_process';
+import { exec } from 'node:child_process';
 import { note } from '@clack/prompts';
+import c from 'chalk';
+import type { CLIOptions } from './types';
 
 export default function end_note({ project }: { project: CLIOptions }) {
   try {
@@ -10,7 +10,7 @@ export default function end_note({ project }: { project: CLIOptions }) {
 
       const repo_name = project.path.split('/').pop();
 
-      let next_steps;
+      let next_steps: string;
 
       if (project.type === 'web') {
         next_steps = [
@@ -53,4 +53,3 @@ export default function end_note({ project }: { project: CLIOptions }) {
     note(Object.values(end_notes).join('\n'), 'Problems?');
   }
 }
-
