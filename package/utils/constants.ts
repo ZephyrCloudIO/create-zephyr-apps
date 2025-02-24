@@ -67,6 +67,11 @@ const TEMPLATES = {
     hint: 'A simple ModernJS app.',
     framework: 'react',
   },
+  'rolldown-react': {
+    label: 'React + Rolldown',
+    hint: 'A React example using Rolldown.',
+    framework: 'react',
+  },
 };
 
 export {
