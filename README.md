@@ -1,3 +1,6 @@
+> [!WARNING]  
+> This repository is deprecated and its contents were moved to [ZephyrCloudIO/zephyr-packages](https://github.com/ZephyrCloudIO/zephyr-packages/tree/master/libs/create-zephyr-apps)
+
 # create-zephyr-apps
 
 Recommend using node version 22.0.0 or above.
